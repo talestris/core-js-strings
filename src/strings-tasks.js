@@ -19,7 +19,10 @@
  *   getStringLength(null) => 0
  *   getStringLength(undefined) => 0
  */
-function getStringLength(value) {}
+function getStringLength(value) {
+  const len = value.length;
+  return len;
+}
 
 /**
  * Returns true if the value is a string, otherwise returns false.
@@ -35,7 +38,13 @@ function getStringLength(value) {}
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(value) {}
+function isString(value) {
+  if (typeof value === 'string') {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 /**
  * Returns the result of concatenation of two strings.
@@ -49,7 +58,10 @@ function isString(value) {}
  *   concatenateStrings('aa', '') => 'aa'.
  *   concatenateStrings('', 'bb') => 'bb'
  */
-function concatenateStrings(value1, value2) {}
+function concatenateStrings(value1, value2) {
+  const result = value1 + value2;
+  return result;
+}
 
 /**
  * Returns the first character of the given string.
@@ -62,7 +74,10 @@ function concatenateStrings(value1, value2) {}
  *   getFirstChar('cat') => 'c'
  *   getFirstChar('') => ''
  */
-function getFirstChar(value) {}
+function getFirstChar(value) {
+  const result = value[0];
+  return result;
+}
 
 /**
  * Removes leading and trailing whitespace characters from the string.
@@ -75,7 +90,10 @@ function getFirstChar(value) {}
  *   removeLeadingAndTrailingWhitespaces('cat ') => 'cat'
  *   removeLeadingAndTrailingWhitespaces('\t\t\tHello, World! ') => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(value) {}
+function removeLeadingAndTrailingWhitespaces(value) {
+  const result = value.trim();
+  return result;
+}
 
 /**
  * Removes only leading whitespace characters from the string.
@@ -88,7 +106,10 @@ function removeLeadingAndTrailingWhitespaces(value) {}
  *   removeLeadingWhitespaces('cat ') => 'cat '
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
-function removeLeadingWhitespaces(value) {}
+function removeLeadingWhitespaces(value) {
+  const result = value.trimStart();
+  return result;
+}
 
 /**
  * Removes only trailing whitespace characters from the string.
