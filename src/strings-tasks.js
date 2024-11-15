@@ -122,7 +122,10 @@ function removeLeadingWhitespaces(value) {
  *   removeTrailingWhitespaces('cat ') => 'cat'
  *   removeTrailingWhitespaces('\t\t\tHello, World! ') => '\t\t\tHello, World!'
  */
-function removeTrailingWhitespaces(value) {}
+function removeTrailingWhitespaces(value) {
+  const result = value.trimEnd();
+  return result;
+}
 
 /**
  * Returns a string that is repeated the specified number of times.
@@ -137,7 +140,10 @@ function removeTrailingWhitespaces(value) {}
  *   repeatString('', 3) => ''
  *   repeatString('abc', -2) => ''
  */
-function repeatString(str, times) {}
+function repeatString(str, times) {
+  const result = str.repeat(times);
+  return result;
+}
 
 /**
  * Remove the first occurrence of a substring from a string.
@@ -151,7 +157,10 @@ function repeatString(str, times) {}
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(str, value) {}
+function removeFirstOccurrences(str, value) {
+  const result = str.replace(value, '');
+  return result;
+}
 
 /**
  * Remove the last occurrence of a substring from a string.
@@ -165,7 +174,11 @@ function removeFirstOccurrences(str, value) {}
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(str, value) {}
+function removeLastOccurrences(str, value) {
+  const lastIndex = str.lastIndexOf(value);
+  if (lastIndex === -1) return str;
+  return str.slice(0, lastIndex) + str.slice(lastIndex + value.length);
+}
 
 /**
  * Calculate the sum of character codes of the given string.
@@ -179,7 +192,15 @@ function removeLastOccurrences(str, value) {}
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(str) {}
+function sumOfCodes(str) {
+  if (str == null) return 0;
+
+  let sum = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    sum += str.charCodeAt(i);
+  }
+  return sum;
+}
 
 /**
  * Checks if a string starts with a specific substring.
@@ -192,7 +213,10 @@ function sumOfCodes(str) {}
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(str, substr) {}
+function startsWith(str, substr) {
+  const result = str.startsWith(substr);
+  return result;
+}
 
 /**
  * Checks if a string ends with a specific substring.
@@ -205,7 +229,10 @@ function startsWith(str, substr) {}
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(str, substr) {}
+function endsWith(str, substr) {
+  const result = str.endsWith(substr);
+  return result;
+}
 
 /**
  * Returns a time string in the "mm:ss" format.
@@ -220,7 +247,12 @@ function endsWith(str, substr) {}
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(minutes, seconds) {}
+function formatTime(minutes, seconds) {
+  const padMinutes = String(minutes).padStart(2, '0');
+  const padSeconds = String(seconds).padStart(2, '0');
+  const result = `${padMinutes}:${padSeconds}`;
+  return result;
+}
 
 /**
  * Returns a string in reverse order.
@@ -232,7 +264,10 @@ function formatTime(minutes, seconds) {}
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(str) {}
+function reverseString(str) {
+  const result = str.split('').reverse().join('');
+  return result;
+}
 
 /**
  * Returns a string with characters in alphabetical order.
@@ -245,7 +280,10 @@ function reverseString(str) {}
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(str) {}
+function orderAlphabetically(str) {
+  const result = [...str].sort().join('');
+  return result;
+}
 
 /**
  * Checks if a given string contains a specified substring.
