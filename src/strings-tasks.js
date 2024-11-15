@@ -41,9 +41,8 @@ function getStringLength(value) {
 function isString(value) {
   if (typeof value === 'string') {
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 /**
@@ -318,14 +317,9 @@ function containsSubstring(str, substring) {
  */
 function countVowels(str) {
   const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
-  let count = 0;
-
-  for (let char of str.toLowerCase()) {
-    if (vowels.includes(char)) {
-      count += 1;
-    }
-  }
-  return count;
+  const arr = str.toLowerCase().split('');
+  const result = arr.filter((char) => vowels.includes(char)).length;
+  return result;
 }
 
 /**
@@ -370,15 +364,12 @@ function isPalindrome(str) {
  *   findLongestWord('No words here') => 'words'
  */
 function findLongestWord(sentence) {
-  const allWords = sentence.split(' ');
-  let longestWord = '';
-
-  for (const word of allWords) {
-    if (word.length > longestWord.length) {
-      longestWord = word;
-    }
-  }
-  return longestWord;
+  const arr = sentence.split(' ');
+  const result = arr.reduce(
+    (longest, current) => (current.length > longest.length ? current : longest),
+    ''
+  );
+  return result;
 }
 
 /**
@@ -395,6 +386,7 @@ function reverseWords(str) {
   const result = str.replace(/\S+/g, (word) =>
     word.split('').reverse().join('')
   );
+  return result;
 }
 
 /**
@@ -515,7 +507,8 @@ function encodeToRot13(str) {
       const charCode = char.charCodeAt(0);
       if (charCode >= 65 && charCode <= 90) {
         return String.fromCharCode(((charCode - 65 + 13) % 26) + 65);
-      } else if (charCode >= 97 && charCode <= 122) {
+      }
+      if (charCode >= 97 && charCode <= 122) {
         return String.fromCharCode(((charCode - 97 + 13) % 26) + 97);
       }
       return char;
