@@ -297,7 +297,10 @@ function orderAlphabetically(str) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(str, substring) {}
+function containsSubstring(str, substring) {
+  const result = str.includes(substring);
+  return result;
+}
 
 /**
  * Returns the number of vowels in the string.
@@ -313,7 +316,17 @@ function containsSubstring(str, substring) {}
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(str) {}
+function countVowels(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+  let count = 0;
+
+  for (let char of str.toLowerCase()) {
+    if (vowels.includes(char)) {
+      count += 1;
+    }
+  }
+  return count;
+}
 
 /**
  * Returns true if the string is a palindrome; otherwise false.
@@ -328,7 +341,21 @@ function countVowels(str) {}
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(str) {}
+function isPalindrome(str) {
+  const result = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+
+  let left = 0;
+  let right = result.length - 1;
+
+  while (left < right) {
+    if (result[left] !== result[right]) {
+      return false;
+    }
+    left += 1;
+    right -= 1;
+  }
+  return true;
+}
 
 /**
  * Find the longest word in the sentence. If there are multiple longest words,
@@ -342,7 +369,17 @@ function isPalindrome(str) {}
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(sentence) {}
+function findLongestWord(sentence) {
+  const allWords = sentence.split(' ');
+  let longestWord = '';
+
+  for (const word of allWords) {
+    if (word.length > longestWord.length) {
+      longestWord = word;
+    }
+  }
+  return longestWord;
+}
 
 /**
  * Returns the string where each word is reversed.
