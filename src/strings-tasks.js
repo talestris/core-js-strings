@@ -391,7 +391,11 @@ function findLongestWord(sentence) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(str) {}
+function reverseWords(str) {
+  const result = str.replace(/\S+/g, (word) =>
+    word.split('').reverse().join('')
+  );
+}
 
 /**
  * Inverts the case of each character in the given string.
@@ -404,7 +408,18 @@ function reverseWords(str) {}
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(str) {}
+function invertCase(str) {
+  let inverted = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+    if (char === char.toUpperCase()) {
+      inverted += char.toLowerCase();
+    } else {
+      inverted += char.toUpperCase();
+    }
+  }
+  return inverted;
+}
 
 /**
  * Returns the result of string template and given parameters firstName and lastName.
@@ -419,7 +434,10 @@ function invertCase(str) {}
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(firstName, lastName) {}
+function getStringFromTemplate(firstName, lastName) {
+  const result = `Hello, ${firstName} ${lastName}!`;
+  return result;
+}
 
 /**
  * Extracts a name from template string 'Hello, First_Name Last_Name!'.
@@ -431,7 +449,11 @@ function getStringFromTemplate(firstName, lastName) {}
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(value) {}
+function extractNameFromTemplate(value) {
+  const removeTheFirstPart = value.replace('Hello', '');
+  const result = removeTheFirstPart.replace('!', '').trim();
+  return result;
+}
 
 /**
  * Remove the first and last angle brackets from tag string
@@ -444,7 +466,10 @@ function extractNameFromTemplate(value) {}
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(str) {}
+function unbracketTag(str) {
+  const result = str.slice(1, -1);
+  return result;
+}
 
 /**
  * Extracts e-mails from single string with e-mails list delimited by semicolons
@@ -461,7 +486,11 @@ function unbracketTag(str) {}
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(str) {}
+function extractEmails(str) {
+  const arr = str.split(';');
+  const result = arr.map((email) => email.trim());
+  return result;
+}
 
 /**
  * Encode specified string with ROT13 cipher
@@ -479,7 +508,20 @@ function extractEmails(str) {}
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(str) {}
+function encodeToRot13(str) {
+  return str
+    .split('')
+    .map((char) => {
+      const charCode = char.charCodeAt(0);
+      if (charCode >= 65 && charCode <= 90) {
+        return String.fromCharCode(((charCode - 65 + 13) % 26) + 65);
+      } else if (charCode >= 97 && charCode <= 122) {
+        return String.fromCharCode(((charCode - 97 + 13) % 26) + 97);
+      }
+      return char;
+    })
+    .join('');
+}
 
 /**
  * Returns playid card id.
@@ -505,7 +547,16 @@ function encodeToRot13(str) {}
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(value) {}
+function getCardId(value) {
+  const ranks = 'A23456789JQTK';
+  const suits = '♣♦♥♠';
+
+  const rank = value.slice(0, -1).replace('10', 'T');
+  const suit = value.slice(-1);
+  const result = suits.indexOf(suit) * 13 + ranks.indexOf(rank);
+
+  return result;
+}
 
 module.exports = {
   getStringLength,
